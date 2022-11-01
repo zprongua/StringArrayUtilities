@@ -32,7 +32,7 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return array[array.length-1];
+        return array[array.length - 1];
     }
 
     /**
@@ -40,7 +40,7 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return array[array.length-2];
+        return array[array.length - 2];
     }
 
     /**
@@ -76,8 +76,7 @@ public class StringArrayUtils {
         String newArray = Arrays.deepToString(array);
         if (orgArray.equals(newArray)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -87,18 +86,6 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-//        String alphabet = "abcdefghijklmnopqrstuvwxyz";
-//        int letterCheck = 0;
-//        for (int i=0; i<alphabet.length(); i++) {
-//            for (String arrayElements : array) {
-//                if (arrayElements.contains(alphabet.charAt(i))) {
-//                    letterCheck += 1;
-//                }
-//            }
-//        }
-//        if (letterCheck == 26) {
-//            return true;
-//        }
         return false;
     }
 
@@ -108,7 +95,13 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int charCount = 0;
+        for (String sa : array) {
+            if (sa.equals(value)) {
+                charCount += 1;
+            }
+        }
+        return charCount;
     }
 
     /**
@@ -133,7 +126,16 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> newArray = new ArrayList<String>();
+        newArray.add(array[0]);
+        for (int i = 1; i<array.length; i++) {
+            if (!array[i].equals(array[i - 1])) {
+                newArray.add(array[i]);
+            }
+        }
+        String[] sa = new String[newArray.size()];
+        sa = newArray.toArray(sa);
+        return sa;
     }
 
     /**
@@ -141,7 +143,24 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> na = new ArrayList<String>();
+        na.add(array[0]);
+        for (int i=1; i<array.length; i++) {
+            if (array[i - 1].contains(array[i])) {
+                System.out.println(na.get(i - 1));
+                na.set(i - 1, na.get(i - 1) + array[i]);
+
+            } else if (!array[i - 1].contains(array[i])) {
+                na.add(array[i]);
+            }
+        }
+
+        String[] sa = new String[na.size()];
+        sa = na.toArray(sa);
+//        for (String s : sa) {
+//            System.out.println(s);
+//        }
+        return sa;
     }
 
 
