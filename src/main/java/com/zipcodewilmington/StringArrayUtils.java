@@ -1,5 +1,12 @@
 package com.zipcodewilmington;
 
+import sun.security.util.ArrayUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -25,7 +32,7 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+        return array[array.length-1];
     }
 
     /**
@@ -33,7 +40,7 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        return array[array.length-2];
     }
 
     /**
@@ -42,6 +49,11 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
+        for (String arrayElements : array) {
+            if (arrayElements.contains(value)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -50,7 +62,8 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        Collections.reverse(Arrays.asList(array));
+        return array;
     }
 
     /**
@@ -58,7 +71,15 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        String orgArray = Arrays.deepToString(array);
+        Collections.reverse(Arrays.asList(array));
+        String newArray = Arrays.deepToString(array);
+        if (orgArray.equals(newArray)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -66,6 +87,18 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
+//        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+//        int letterCheck = 0;
+//        for (int i=0; i<alphabet.length(); i++) {
+//            for (String arrayElements : array) {
+//                if (arrayElements.contains(alphabet.charAt(i))) {
+//                    letterCheck += 1;
+//                }
+//            }
+//        }
+//        if (letterCheck == 26) {
+//            return true;
+//        }
         return false;
     }
 
@@ -84,7 +117,15 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        ArrayList<String> newArray = new ArrayList<String>();
+        int j = 0;
+        for (String s : array) {
+            if (!s.equals(valueToRemove)) {
+                newArray.add(s);
+                j++;
+            }
+        }
+        return newArray.toArray(new String[j]);
     }
 
     /**
