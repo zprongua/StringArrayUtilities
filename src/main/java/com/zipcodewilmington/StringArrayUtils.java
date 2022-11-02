@@ -143,32 +143,26 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        ArrayList<String> na = new ArrayList<String>();
-        na.add(array[0]);
-//        for (int i=1; i<array.length; i++) {
-//            if (array[i - 1].contains(array[i])) {
-//                //System.out.println(na.get(i - 1));
-//                na.set(i - 1, na.get(i - 1) + array[i]);
-//
-//            } else if (!array[i - 1].contains(array[i])) {
-//                na.add(array[i]);
-//            }
-//        }
+        ArrayList<String> na = new ArrayList();
+        int theCount = 0;
         int index = 0;
-        for (String input : array) {
-            while ((index = input.indexOf("g", index)) != -1) {
-                if (index > 1) {
-                    if (input.charAt(index + 1) == 'g' || input.charAt(index - 1) == 'g') {
-
-                    }
+        ArrayList<Integer> indices = new ArrayList();
+        for (String str : array) {
+            while ((index = str.indexOf(str, index)) != -1) {
+                if (!indices.contains(index)) {
+                    indices.add(index);
+                    theCount++;
                 }
                 index++;
             }
+
         }
 
+        Integer[] ia = new Integer[indices.size()];
+        ia = indices.toArray(ia);
         String[] sa = new String[na.size()];
         sa = na.toArray(sa);
-        for (String s : sa) {
+        for (int s : ia) {
             System.out.print(s+" ");
         }
         return sa;
