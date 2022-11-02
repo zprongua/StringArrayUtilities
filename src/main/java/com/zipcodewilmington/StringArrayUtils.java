@@ -2,10 +2,9 @@ package com.zipcodewilmington;
 
 import sun.security.util.ArrayUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
+
+import static java.util.Arrays.*;
 
 /**
  * Created by leon on 1/29/18.
@@ -62,7 +61,7 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        Collections.reverse(Arrays.asList(array));
+        Collections.reverse(asList(array));
         return array;
     }
 
@@ -71,9 +70,9 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        String orgArray = Arrays.deepToString(array);
-        Collections.reverse(Arrays.asList(array));
-        String newArray = Arrays.deepToString(array);
+        String orgArray = deepToString(array);
+        Collections.reverse(asList(array));
+        String newArray = deepToString(array);
         if (orgArray.equals(newArray)) {
             return true;
         } else {
@@ -86,7 +85,18 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        String abcs = "";
+
+        String str = Arrays.toString(array).toLowerCase();
+        for (char ch='a'; ch<='z'; ch++) {
+            if (str.contains(String.valueOf(ch))) {
+                if (!abcs.contains(String.valueOf(ch))) {
+                    abcs += String.valueOf(ch);
+                }
+            }
+        }
+        return alphabet.equals(abcs);
     }
 
     /**
@@ -143,26 +153,16 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
+//        String arrayString = "";
+//        for (String as : array) {
+//            arrayString += as;
+//        }
         ArrayList<String> na = new ArrayList();
-        int theCount = 0;
-        int index = 0;
-        ArrayList<Integer> indices = new ArrayList();
-        for (String str : array) {
-            while ((index = str.indexOf(str, index)) != -1) {
-                if (!indices.contains(index)) {
-                    indices.add(index);
-                    theCount++;
-                }
-                index++;
-            }
+        
 
-        }
-
-        Integer[] ia = new Integer[indices.size()];
-        ia = indices.toArray(ia);
         String[] sa = new String[na.size()];
         sa = na.toArray(sa);
-        for (int s : ia) {
+        for (String s : sa) {
             System.out.print(s+" ");
         }
         return sa;
