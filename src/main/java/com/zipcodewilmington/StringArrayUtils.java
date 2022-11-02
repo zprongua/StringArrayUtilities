@@ -145,21 +145,32 @@ public class StringArrayUtils {
     public static String[] packConsecutiveDuplicates(String[] array) {
         ArrayList<String> na = new ArrayList<String>();
         na.add(array[0]);
-        for (int i=1; i<array.length; i++) {
-            if (array[i - 1].contains(array[i])) {
-                System.out.println(na.get(i - 1));
-                na.set(i - 1, na.get(i - 1) + array[i]);
+//        for (int i=1; i<array.length; i++) {
+//            if (array[i - 1].contains(array[i])) {
+//                //System.out.println(na.get(i - 1));
+//                na.set(i - 1, na.get(i - 1) + array[i]);
+//
+//            } else if (!array[i - 1].contains(array[i])) {
+//                na.add(array[i]);
+//            }
+//        }
+        int index = 0;
+        for (String input : array) {
+            while ((index = input.indexOf("g", index)) != -1) {
+                if (index > 1) {
+                    if (input.charAt(index + 1) == 'g' || input.charAt(index - 1) == 'g') {
 
-            } else if (!array[i - 1].contains(array[i])) {
-                na.add(array[i]);
+                    }
+                }
+                index++;
             }
         }
 
         String[] sa = new String[na.size()];
         sa = na.toArray(sa);
-//        for (String s : sa) {
-//            System.out.println(s);
-//        }
+        for (String s : sa) {
+            System.out.print(s+" ");
+        }
         return sa;
     }
 
