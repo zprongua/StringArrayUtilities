@@ -153,18 +153,22 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        String arrayString = "";
-        for (String as : array) {
-            arrayString += as;
-        }
         ArrayList<String> na = new ArrayList();
-        for
+        for (int i=0; i<array.length; i++) {
+            na.add(i, array[i]);
+        }
+        for (int i=0; i<na.size()-1; i++) {
+            while (na.get(i).contains((na.get(i+1)))) {
+                na.set(i, (na.get(i) + na.get(i+1)));
+                na.remove(i+1);
+                if (i==na.size()-1) {
+                    break;
+                }
+            }
+        }
 
         String[] sa = new String[na.size()];
         sa = na.toArray(sa);
-        for (String s : sa) {
-            System.out.print(s+" ");
-        }
         return sa;
     }
 
